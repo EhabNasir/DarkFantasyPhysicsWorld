@@ -36,8 +36,10 @@ public class PointMass : MonoBehaviour
 
         if(InputManager.instance.jump.action.triggered && hasJump)
         {
-            position.y += 1;
-            prevPosition = position;
+            //position.y += 1;
+            //prevPosition = position;
+
+            prevPosition.x -= 200 * Time.deltaTime;
         }
     }
 
