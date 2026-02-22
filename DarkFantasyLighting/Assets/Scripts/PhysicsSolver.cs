@@ -6,6 +6,7 @@ public class PhysicsSolver : MonoBehaviour
     public List<PointMass> _points;
     public List<PointCollider> _colliders;
     public ConstraintSolver _constraintSolver;
+    public TrapezoidConstraint _blobConstraint;
     public CCD_IK_Solver _IK_Solver;
 
     // Update is called once per frame
@@ -25,6 +26,9 @@ public class PhysicsSolver : MonoBehaviour
 
             if(_constraintSolver)
                 _constraintSolver.ConstraintStep();
+
+            if(_blobConstraint)
+                _blobConstraint.CalculateArea();
 
             if(_IK_Solver)
                 _IK_Solver.CCDSolver();

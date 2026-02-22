@@ -36,11 +36,13 @@ public class PointMass : MonoBehaviour
 
         if(InputManager.instance.jump.action.triggered && hasJump)
         {
-            //position.y += 1;
-            //prevPosition = position;
-
-            prevPosition.x -= 200 * Time.deltaTime;
+            ApplyImpulse(new Vector2(input.x, 50));
         }
+    }
+
+    public void ApplyImpulse(Vector2 impulse)
+    {
+        prevPosition -= impulse * Time.fixedDeltaTime;
     }
 
     public void VerletStep()
