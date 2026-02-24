@@ -6,6 +6,7 @@ using NUnit.Framework.Constraints;
 public class CCD_IK_Solver : MonoBehaviour
 {
     [SerializeField] GameObject target;
+    [SerializeField] LineRenderer lr;
 
     [Space(10)]
 
@@ -13,9 +14,19 @@ public class CCD_IK_Solver : MonoBehaviour
     [SerializeField] PointMass endEffector;
     [SerializeField] PointMass[] joints;
 
+    private void Start()
+    {
+        lr.positionCount = 3;
+    }
+
     private void Update()
     {
         targetPosition = target.transform.position;
+
+        for (int i = 0; i < joints.Length; i++)
+        {
+            lr.SetPosition(i, joints[i].position);
+        }
     }
 
     public void CCDSolver()
