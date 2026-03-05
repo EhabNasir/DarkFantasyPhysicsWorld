@@ -45,10 +45,13 @@ public class PointMass : MonoBehaviour
         prevPosition -= impulse * Time.fixedDeltaTime;
     }
 
+    public void AddForce(Vector2 _newForce)
+    {
+        netForce += _newForce;
+    }
+
     public void VerletStep()
     {
-        //clear forces from last frame
-        netForce = Vector2.zero;
 
         //add continuous forces
         netForce += input;
@@ -63,6 +66,8 @@ public class PointMass : MonoBehaviour
 
         position += netForce * Time.deltaTime * Time.deltaTime;
 
+        //clear forces from last frame
+        netForce = Vector2.zero;
         transform.position = position;
 
     }

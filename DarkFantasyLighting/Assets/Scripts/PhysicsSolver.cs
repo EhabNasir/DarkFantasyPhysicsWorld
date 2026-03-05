@@ -8,10 +8,17 @@ public class PhysicsSolver : MonoBehaviour
     public ConstraintSolver _constraintSolver;
     public TrapezoidConstraint _blobConstraint;
     public CCD_IK_Solver _IK_Solver;
+    public TargetPoseController _targetPoseController;
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        // 1. APPLY FORCES (before integration!)
+        if (_targetPoseController)
+        {
+            _targetPoseController.ApplyTargetPose();
+        }
+
         foreach (var point in _points)
         {
             point.VerletStep();
