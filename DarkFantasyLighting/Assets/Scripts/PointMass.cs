@@ -9,6 +9,7 @@ public class PointMass : MonoBehaviour
     public Vector2 prevPosition;
 
     public Vector2 gravity;
+    public float jumpForce = 60.0f;
     public Vector2 input;
     public float speed;
 
@@ -36,7 +37,7 @@ public class PointMass : MonoBehaviour
 
         if(InputManager.instance.jump.action.triggered && hasJump)
         {
-            ApplyImpulse(new Vector2(input.x, 50));
+            ApplyImpulse(new Vector2(input.x, jumpForce));
         }
     }
 

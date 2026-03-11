@@ -21,7 +21,8 @@ public class CCD_IK_Solver : MonoBehaviour
 
     private void Update()
     {
-        targetPosition = target.transform.position;
+        if (target != null)
+            targetPosition = target.transform.position;
 
         for (int i = 0; i < joints.Length; i++)
         {
@@ -31,6 +32,9 @@ public class CCD_IK_Solver : MonoBehaviour
 
     public void CCDSolver()
     {
+        if (target == null)
+            return;
+
         endEffector = joints[joints.Length - 1];
 
         if (Vector2.Distance(endEffector.position, targetPosition) < 0.01f)

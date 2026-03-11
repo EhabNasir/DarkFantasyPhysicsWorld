@@ -17,19 +17,28 @@ public class ConstraintSolver : MonoBehaviour
     {
         Vector2 delta = c.pointB.position - c.pointA.position;
 
-        if(delta.magnitude > 0)
+        if(c.doesOverlap)
         {
-            float distance = delta.magnitude;
-
-            float difference = (distance - c.restLength) / distance;
-
-            Vector2 offset = delta * difference * c.springCoefficient;
-
-            float totalWeight = c.pointA.inverseMass + c.pointB.inverseMass;
-
-            c.pointA.position += offset * (c.pointA.inverseMass / totalWeight);
-            c.pointB.position -= offset * (c.pointB.inverseMass / totalWeight);
+            if (delta.magnitude <= c.restLength)
+                return;
         }
+        else
+        {
+            if (delta.magnitude <= 0)
+                return;
+        }
+
+        float distance = delta.magnitude;
+
+        float difference = (distance - c.restLength) / distance;
+
+        Vector2 offset = delta * difference * c.springCoefficient;
+
+        float totalWeight = c.pointA.inverseMass + c.pointB.inverseMass;
+
+        c.pointA.position += offset * (c.pointA.inverseMass / totalWeight);
+        c.pointB.position -= offset * (c.pointB.inverseMass / totalWeight);
+
     }
 
     void SolveFollowerConstraints(FollowerConstraint f)

@@ -7,4 +7,5 @@ public class PointsConstraint : MonoBehaviour
 
     public float restLength;
     public float springCoefficient = 0.5f;
+    public bool doesOverlap = false;
 }
