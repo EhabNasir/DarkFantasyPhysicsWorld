@@ -24,7 +24,7 @@ public class PhysicsSolver : MonoBehaviour
             point.VerletStep();
         }
 
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 4; i++)
         {
             foreach (var collider in _colliders)
             {
